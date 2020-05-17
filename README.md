@@ -21,12 +21,14 @@ Design a REST API with the following operations:
 
 ### Bonuses
 
-Make sure a vehicle cannot be booked more than once at any given time
-We store the user address, and we want to geocode it (use a lib)
-Run the app in Docker
-Instructions
-Use a Python-based framework of your choice. If you have no preference, for instance because you do not have prior experience, prefer Django.
-We should be able to easily run your application on our computer.
-Upload your code to a private Github repository and grant us access (our usernames will be provided separately).
-Do not squash all your commits, nor push a single commit at the end. We will be looking at the history.
-Ignore all authentication concerns, but check the framework’s documentation: how would you protect your endpoints, with different roles (user, admin)?
+- Make sure a vehicle cannot be booked more than once at any given time
+- We store the user address, and we want to geocode it (use a lib)
+- Run the app in Docker
+
+### Instructions
+
+- Use a Python-based framework of your choice. If you have no preference, for instance because you do not have prior experience, prefer Django.
+- We should be able to easily run your application on our computer.
+- Upload your code to a private Github repository and grant us access (our usernames will be provided separately).
+- Do not squash all your commits, nor push a single commit at the end. We will be looking at the history.
+- Ignore all authentication concerns, but check the framework’s documentation: how would you protect your endpoints, with different roles (user, admin)?
