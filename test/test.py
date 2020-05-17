@@ -9,7 +9,9 @@ from .helpers.user import create_user, get_users
 created_app = setup('config/test.cfg')
 app = created_app.test_client()
 app.testing = True
-
+config = {
+    'tear_down_db': True,
+}
 class Tests(unittest.TestCase, FixturesMixin):
     fixtures = ['test/data.json']
     app = created_app
@@ -23,6 +25,12 @@ class Tests(unittest.TestCase, FixturesMixin):
     def tearDownClass(cls):
         pass
 
+    def dropDb(self):
+        if config['tear_down_db']:
+            with created_app.app_context():
+                db.drop_all()
+                db.session.remove()
+                print('test db dropped')
     """
     executed once before tests
     """
@@ -40,6 +48,7 @@ class Tests(unittest.TestCase, FixturesMixin):
     """
     def tearDown(self):
         print('tearing down test')
+        self.dropDb()
 
     """
     tests
