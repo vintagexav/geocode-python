@@ -18,6 +18,7 @@ def create_booking():
     try:
         user_id = request.form['user_id'] # mandatory in Model
         vehicle_id  =  request.form['vehicle_id'] # mandatory in Model
+        #
         user = db.session.query(User).get(int(user_id))
         vehicle = db.session.query(Vehicle).get(int(vehicle_id))
         booking = Booking(user=user, vehicle=vehicle)
@@ -36,6 +37,7 @@ def create_booking():
 def get_booking():
     try:
         booking_id = request.form['booking_id']
+        #
         booking = Booking.query.get(int(booking_id))
         res = {
             'booking': booking.to_json(),

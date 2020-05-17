@@ -16,6 +16,7 @@ def create_user():
     try:
         email = request.form['email'] # warning email is mandatory in Model
         address  =  request.form['address'] if 'address' in request.form else ''
+        #
         user = User(email=email, name='', address=address, latlng='')
         db.session.add(user)
         db.session.commit()
@@ -34,6 +35,7 @@ def update_user():
     try:
         email = request.form['email'] # THIS MIGHT NOT EXIST
         user_id = request.form['user_id'] # THIS MIGHT NOT EXIST
+        #
         user = User.query.get(int(user_id))
         user.email = email
         user.updated_at = datetime.utcnow()

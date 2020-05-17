@@ -50,7 +50,6 @@ class Tests(unittest.TestCase, FixturesMixin):
     """
     def tearDown(self):
         print('tearing down test')
-        self.dropDb()
 
     """
     tests

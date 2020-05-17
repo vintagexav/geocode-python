@@ -1,0 +1,51 @@
+<!doctype html>
+{% if title %}
+<h1>{{ title }}</h1>
+{% else %}
+<h1>Documentation</h1>
+{% endif %}
+<!-- https://divtable.com/generator/ -->
+<table>
+    <tbody>
+    <thead style="height: 23px;">
+        <td style="height: 23px; font-weight: bold;">METHOD</td>
+        <td style="height: 23px; font-weight: bold;">PATH</td>
+        <td style="height: 23px; font-weight: bold;">BODY</td>
+    </thead>
+    <tr style="height: 23px;">
+        <td style="height: 23px;">PUT</td>
+        <td style="height: 23px;">/api/user/create</td>
+        <td style="height: 23px;">{email, address}</td>
+    </tr>
+    <tr style="height: 23px;">
+        <td style="height: 23px;">POST</td>
+        <td style="height: 23px;">/api/user/update</td>
+        <td style="height: 23px;">{user_id, email}</td>
+    </tr>
+    <tr style="height: 23px;">
+        <td style="height: 23px;">GET</td>
+        <td style="height: 23px;">/api/user/all</td>
+        <td style="height: 23px;">{}</td>
+    </tr>
+    <tr style="height: 23px;">
+        <td style="height: 23px;">DELETE</td>
+        <td style="height: 23px;">/api/vehicle/delete</td>
+        <td style="height: 23px;">{vehicle_id}</td>
+    </tr>
+    <tr style="height: 23px;">
+        <td style="height: 23px;">PUT</td>
+        <td style="height: 23px;">/api/booking/create</td>
+        <td style="height: 23px;">{user_id, vehicle_id}</td>
+    </tr>
+    <tr style="height: 23px;">
+        <td style="height: 23px;">GET</td>
+        <td style="height: 23px;">/api/booking/get</td>
+        <td style="height: 23px;">{booking_id}</td>
+    </tr>
+    <tr style="height: 23px;">
+        <td style="height: 23px;">GET</td>
+        <td style="height: 23px;">/files/documentation</td>
+        <td style="height: 23px;">{}</td>
+    </tr>
+    </tbody>
+</table>
