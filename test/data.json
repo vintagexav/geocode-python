@@ -4,5 +4,13 @@
     "records": [{
       "email": "homer@simpson.com"
     }]
+  },
+  {
+    "table": "vehicle",
+    "records": [{
+      "type": "car",
+      "brand": "ferrari",
+      "license_plate": "1-ABC-456"
+    }]
   }
 ]
