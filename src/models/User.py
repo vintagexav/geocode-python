@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+import datetime
 from .db import db
 
 # ======
@@ -8,7 +8,7 @@ from .db import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=True,)
     v = db.Column(db.Integer, nullable=False, default=1)
     #

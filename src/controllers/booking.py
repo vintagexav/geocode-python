@@ -5,7 +5,6 @@ from ..models.Booking import Booking
 from ..models.db import db
 from ..routes.booking import routes_booking
 from ..utils.error import res_error
-from datetime import datetime
 from ..constants.bookingStatus import BookingStatus
 
 # ======

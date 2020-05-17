@@ -3,7 +3,7 @@ from ..models.User import User
 from ..models.db import db
 from ..routes.user import routes_user
 from ..utils.error import res_error
-from datetime import datetime
+import datetime
 import os
 import geocoder
 
@@ -16,7 +16,7 @@ user_api = Blueprint('user_api', __name__)
 @user_api.route(**(routes_user['create']))
 def create_user():
     try:
-        email = request.form['email'] # warning email is mandatory in Model
+        email = request.form['email'] if 'email' in request.form else ''
         address  =  request.form['address'] if 'address' in request.form else ''
         googlekey = os.getenv('GEOCODE_KEY') # this should not be stored in code of course
         g = geocoder.google(address, key=googlekey)

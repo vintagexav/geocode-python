@@ -3,7 +3,7 @@ from ..models.Vehicle import Vehicle
 from ..models.db import db
 from ..routes.vehicle import routes_vehicle
 from ..utils.error import res_error
-from datetime import datetime
+import datetime
 
 # ======
 # USER

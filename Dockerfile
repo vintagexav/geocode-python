@@ -6,13 +6,13 @@ FROM python:2.7
 WORKDIR /usr/src/app
 
 # Add code
-COPY . .
+ADD . .
 
 # Install the dependencies and force reinstall geocoder
 RUN pip install -r requirements.txt --force-reinstall geocoder
 # Set environment variables
 ENV FLASK_APP=src/main.py
-
+ENV FLASK_ENV=development
 # Expose the application's port
 EXPOSE 5000
 
