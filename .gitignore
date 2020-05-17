@@ -139,6 +139,6 @@ dmypy.json
 cython_debug/
 
 # misc
-db/
+db/*.db
 .DS_Store
 .idea/
