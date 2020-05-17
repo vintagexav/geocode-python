@@ -1,0 +1,24 @@
+[
+  {
+    "table": "users",
+    "records": [{
+      "username": "Xavier"
+    }]
+  },
+  {
+    "table": "vehicles",
+    "records": [{
+      "type": "car",
+      "brand": "peugeot"
+    }]
+  },
+  {
+    "table": "bookings",
+    "records": [{
+      "user": "",
+      "vehicle": "",
+      "date": "",
+      "duration": ""
+    }]
+  }
+]
