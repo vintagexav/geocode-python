@@ -5,6 +5,7 @@ from src.models.db import db
 import unittest
 from flask_fixtures import FixturesMixin
 from .helpers.user import create_user, get_users
+from .helpers.booking import create_booking
 
 created_app = setup('config/test.cfg')
 app = created_app.test_client()
@@ -58,3 +59,6 @@ class Tests(unittest.TestCase, FixturesMixin):
         create_user(self, 'maggy@simpson.com', 'Brussels', {'id':3,},)
         create_user(self, 'maggy@simpson.com', 'Brussels', {}, True, 400) # error because of same email adress
         get_users(self, {'users_count':3,},)
+
+    def test_2_create_booking(self):
+        create_booking(self, 1, 1, {'id':2,},)
