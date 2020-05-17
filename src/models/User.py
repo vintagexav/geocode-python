@@ -30,6 +30,7 @@ class User(db.Model):
         }
         if self.updated_at:
             res['updated_at'] = datetime.timestamp(self.updated_at)
+        return res
 
     def __repr__(self):
         return '<User %r>' % self.name

@@ -13,6 +13,10 @@ def create_app(config_file=None):
     def handler_error_404(error):
         return error_404('main', error)
     return app
+def register_blueprints(app):
+    print('register_blueprints')
+    from .controllers.user import user_api
+    app.register_blueprint(user_api, url_prefix='/api/user')
 def initialize_extensions(app):
     print('initialize_extensions')
     db.init_app(app)
@@ -21,5 +25,6 @@ def initialize_extensions(app):
 def setup(config):
     print('setup')
     app = create_app(config)
+    register_blueprints(app)
     initialize_extensions(app)
     return app

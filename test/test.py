@@ -38,12 +38,12 @@ class Tests(unittest.TestCase, FixturesMixin):
         })
         url = '/api/user/create'
         result = app.put(url, data=(data), headers=headers)#
-        self.assertEqual('error' in result.json, False)
+        self.assertEqual('error' in result.json, should_fail)
         print(result.json)
         self.assertEqual(result.status_code, 201)
         self.assertEqual(result.json['user']['email'], email)
         self.assertEqual(result.json['user']['address'], address)
-        self.assertEqual(result.content_type, self.mimetype)
+        self.assertEqual(result.content_type, mimetype)
         self.assertEqual(result.json['user']['id'], id)
         self.assertEqual(result.json['user']['v'], 1) # new users are created with version = 1
         print(result.json)
