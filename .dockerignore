@@ -1,3 +1,5 @@
 .git
 env/
 __pycache__/
+db/test.db
+db/dev.db
