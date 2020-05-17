@@ -61,12 +61,14 @@ class Tests(unittest.TestCase, FixturesMixin):
         get_users(self, {'users_count':3,},)
 
     def test_2_create_booking(self):
-        create_booking(self, 1, 1, {'id':2,},)
+        create_booking(self, 1, 2, {'id':2,},)
+        create_booking(self, 1, 1, {}, True, 409) # vehicle is already booked
+        create_user(self, 'marge@simpson.com', 'Brussels', {'id':2,},)
         create_booking(self, 41, 69, {}, True) # error because entities do not exist
 
     def test_3_get_booking(self):
         get_booking(self, 1)
-        create_booking(self, 1, 1, {'id':2,},)
+        create_booking(self, 1, 2, {'id':2,},)
         get_booking(self, 2)
 
     def test_4_delete_vehicle(self):

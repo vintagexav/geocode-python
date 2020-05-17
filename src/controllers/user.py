@@ -4,6 +4,8 @@ from ..models.db import db
 from ..routes.user import routes_user
 from ..utils.error import res_error
 from datetime import datetime
+import os
+import geocoder
 
 # ======
 # USER
@@ -16,8 +18,11 @@ def create_user():
     try:
         email = request.form['email'] # warning email is mandatory in Model
         address  =  request.form['address'] if 'address' in request.form else ''
+        googlekey = os.getenv('GEOCODE_KEY') # this should not be stored in code of course
+        g = geocoder.google(address, key=googlekey)
+        latlng = g.latlng if g.latlng else ''
         #
-        user = User(email=email, name='', address=address, latlng='')
+        user = User(email=email, name='', address=address, latlng=latlng)
         db.session.add(user)
         db.session.commit()
         res = {

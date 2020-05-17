@@ -4,6 +4,18 @@
 This is a demo application. It will serve as a playground to discuss tech-to-tech during the next interview. Take a chance to demonstrate your clean code skills, while keeping in mind that the application will
 not go to production. Therefore we don’t expect every edge case to be covered.
 
+## Start
+
+Provide Google API Key as environment variable in `GEOCODE_KEY` if you would like to store latitude/logitude of user address
+Run
+`FLASK_APP=src/main.py FLASK_ENV=development flask run --port 8080`
+
+Then you can see documentation on
+`http://localhost:8080/files/documentation/`
+
+Tests
+`py.test test/test.py --log-cli-level=10 -s`
+
 ##  Context
 
 YourMove operates a free-floating private fleet of different sorts of vehicles: cars, bikes, motor scooters and kick scooters. Using a mobile application, a customer can book a vehicle, they choose a starting date and time, and a duration in order to make a reservation.

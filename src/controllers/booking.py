@@ -6,6 +6,7 @@ from ..models.db import db
 from ..routes.booking import routes_booking
 from ..utils.error import res_error
 from datetime import datetime
+from ..constants.bookingStatus import BookingStatus
 
 # ======
 # BOOKING
@@ -21,6 +22,12 @@ def create_booking():
         #
         user = db.session.query(User).get(int(user_id))
         vehicle = db.session.query(Vehicle).get(int(vehicle_id))
+        if vehicle.vehicle_bookings: # let's check if the vehicle is available
+            vehicle_is_busy = list(map(lambda v: v.status in BookingStatus.UNAVAILABLE_STATES, vehicle.vehicle_bookings))[0]
+            if vehicle_is_busy:
+                res = res_error('Vehicle is already booked')
+                return jsonify(res), 409
+        print('...\n\n')
         booking = Booking(user=user, vehicle=vehicle)
         db.session.add(booking)
         db.session.commit()

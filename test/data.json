@@ -11,7 +11,12 @@
       "type": "car",
       "brand": "ferrari",
       "license_plate": "1-ABC-456"
-    }]
+    },{
+      "type": "bike",
+      "brand": "peugeot",
+      "license_plate": ""
+    }
+    ]
   },
   {
     "table": "booking",

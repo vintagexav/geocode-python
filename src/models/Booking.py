@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from .db import db
+from ..constants.bookingStatus import BookingStatus
 
 # ======
 # Booking
@@ -16,6 +17,7 @@ class Booking(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     vehicle = db.relationship('Vehicle', backref=db.backref('vehicle_bookings', lazy=True))
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'), nullable=False)
+    status = db.Column(db.Integer, nullable=False, default=BookingStatus.CREATED)
 
     def to_json(self):
         res = {
@@ -25,10 +27,11 @@ class Booking(db.Model):
             #
             'user_id': self.user_id,
             'vehicle_id': self.vehicle_id,
+            'status': self.status
         }
         if self.updated_at:
             res['updated_at'] = datetime.timestamp(self.updated_at)
         return res
 
     def __repr__(self):
-        return '<Booking #%s %s %s>' % (self.id, self.user_id, self.vehicle_id)
+        return '<Booking #%s user %s vehicle %s>' % (self.id, self.user_id, self.vehicle_id)
