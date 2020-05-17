@@ -12,5 +12,12 @@
       "brand": "ferrari",
       "license_plate": "1-ABC-456"
     }]
+  },
+  {
+    "table": "booking",
+    "records": [{
+      "vehicle_id": 1,
+      "user_id": 1
+    }]
   }
 ]

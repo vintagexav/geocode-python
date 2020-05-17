@@ -23,6 +23,7 @@ def initialize_extensions(app):
     db.create_all(app=app)
     from .models.User import User
     from .models.Vehicle import Vehicle
+    from .models.Booking import Booking
 def setup(config):
     print('setup')
     app = create_app(config)
