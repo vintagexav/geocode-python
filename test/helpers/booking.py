@@ -31,6 +31,10 @@ def get_booking(self, id, expected={}, should_fail=False, failure_error_code=400
     url = '/api/booking/get'
     result = self.app.get(url, data=(data), headers=self.headers)
     print_result(result.json)
-    self.assertEqual('error' in result.json, should_fail)
-    self.assertEqual(result.status_code, 200)
-    self.assertEqual(result.json['booking']['id'], id)
+    if should_fail:
+        print_result(result.json)
+    else:
+        self.assertEqual('error' in result.json, should_fail)
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(result.json['booking']['id'], id)
+

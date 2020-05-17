@@ -20,8 +20,10 @@ def register_blueprints(app):
     print('register_blueprints')
     api = '/api'
     from .controllers.user import user_api
+    from .controllers.vehicle import vehicle_api
     from .controllers.booking import booking_api
     app.register_blueprint(user_api, url_prefix='%s/user' % api)
+    app.register_blueprint(vehicle_api, url_prefix='%s/vehicle' % api)
     app.register_blueprint(booking_api, url_prefix='%s/booking' % api)
 def initialize_extensions(app):
     print('initialize_extensions')

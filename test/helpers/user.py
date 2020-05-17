@@ -29,7 +29,10 @@ def get_users(self, expected={}, should_fail=False):
     url = '/api/user/all'
     result = self.app.get(url, data=(data), headers=self.headers)
     print_result(result.json)
-    self.assertEqual('error' in result.json, should_fail)
-    self.assertEqual(result.content_type, self.mimetype)
-    self.assertEqual(result.status_code, 200)
-    self.assertEqual(len(result.json['users']), expected['users_count'])
+    if should_fail:
+        print_result(result.json)
+    else:
+        self.assertEqual('error' in result.json, should_fail)
+        self.assertEqual(result.content_type, self.mimetype)
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(len(result.json['users']), expected['users_count'])

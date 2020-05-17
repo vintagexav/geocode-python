@@ -6,6 +6,7 @@ import unittest
 from flask_fixtures import FixturesMixin
 from .helpers.user import create_user, get_users
 from .helpers.booking import create_booking, get_booking
+from .helpers.vehicle import delete_vehicle
 
 created_app = setup('config/test.cfg')
 app = created_app.test_client()
@@ -67,3 +68,6 @@ class Tests(unittest.TestCase, FixturesMixin):
         get_booking(self, 1)
         create_booking(self, 1, 1, {'id':2,},)
         get_booking(self, 2)
+
+    def test_4_delete_vehicle(self):
+        delete_vehicle(self, 1)
