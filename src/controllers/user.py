@@ -36,7 +36,6 @@ def create_user():
 
 @user_api.route(**(routes_user['update']))
 def update_user():
-    email = None
     try:
         email = request.form['email'] # THIS MIGHT NOT EXIST
         user_id = request.form['user_id'] # THIS MIGHT NOT EXIST
