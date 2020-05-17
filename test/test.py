@@ -46,4 +46,6 @@ class Tests(unittest.TestCase, FixturesMixin):
     """
     def test_1_create_users(self):
         create_user(self, 'marge@simpson.com', 'Brussels', {'id':2,},)
-        get_users(self, {'users_count':2,},)
+        create_user(self, 'maggy@simpson.com', 'Brussels', {'id':3,},)
+        create_user(self, 'maggy@simpson.com', 'Brussels', {}, True, 400) # error because of same email adress
+        get_users(self, {'users_count':3,},)

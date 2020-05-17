@@ -24,6 +24,7 @@ def create_user():
         }
         return jsonify(res), 201
     except Exception as e:
+        db.session.rollback()
         res = res_error(e)
     return jsonify(res), 400
 
