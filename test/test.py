@@ -4,7 +4,7 @@ from src.setup import setup
 from src.models.db import db
 import unittest
 from flask_fixtures import FixturesMixin
-from .helpers.user import create_user, get_users
+from .helpers.user import create_user, get_users, update_user
 from .helpers.booking import create_booking, get_booking
 from .helpers.vehicle import delete_vehicle
 
@@ -63,6 +63,7 @@ class Tests(unittest.TestCase, FixturesMixin):
 
     def test_2_create_booking(self):
         create_booking(self, 1, 1, {'id':2,},)
+        create_booking(self, 41, 69, {}, True) # error because entities do not exist
 
     def test_3_get_booking(self):
         get_booking(self, 1)
@@ -71,3 +72,9 @@ class Tests(unittest.TestCase, FixturesMixin):
 
     def test_4_delete_vehicle(self):
         delete_vehicle(self, 1)
+        delete_vehicle(self, 1048, {}, True) # error because vehicle does not exist
+
+    def test_5_update_user(self):
+        create_user(self, 'charley@burns.com', 'Brussels', {'id':2,},)
+        update_user(self, 2, 'charles.montgomery.Monty@burns.com')
+        update_user(self, 42, '', True) # error because user does not exist

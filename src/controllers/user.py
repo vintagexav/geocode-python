@@ -28,6 +28,25 @@ def create_user():
         res = res_error(e)
     return jsonify(res), 400
 
+@user_api.route(**(routes_user['update']))
+def update_user():
+    email = None
+    try:
+        email = request.form['email'] # THIS MIGHT NOT EXIST
+        user_id = request.form['user_id'] # THIS MIGHT NOT EXIST
+        user = User.query.get(int(user_id))
+        user.email = email
+        user.updated_at = datetime.utcnow()
+        user.v = user.v+1
+        db.session.commit()
+        res = {
+            'user': user.to_json(),
+        }
+        return jsonify(res), 200
+    except Exception as e:
+        res = res_error(e)
+    return jsonify(res), 400
+
 @user_api.route(**(routes_user['all']))
 def get_all_users():
     res = {

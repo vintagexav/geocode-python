@@ -13,8 +13,8 @@ def create_user(self, email, address, expected={}, should_fail=False, failure_er
     url = '/api/user/create'
     result = self.app.put(url, data=(data), headers=self.headers)
     print_result(result.json)
+    self.assertEqual('error' in result.json, should_fail)
     if (should_fail):
-        self.assertEqual('error' in result.json, should_fail)
         self.assertEqual(result.status_code, failure_error_code)
     else:
         self.assertEqual(result.content_type, self.mimetype)
@@ -24,15 +24,33 @@ def create_user(self, email, address, expected={}, should_fail=False, failure_er
         self.assertEqual(result.json['user']['id'], expected['id'])
         self.assertEqual(result.json['user']['v'], 1) # new users are created with version = 1
 
-def get_users(self, expected={}, should_fail=False):
+def get_users(self, expected={}, should_fail=False, failure_error_code=400):
     data = urlencode({})
     url = '/api/user/all'
     result = self.app.get(url, data=(data), headers=self.headers)
     print_result(result.json)
     if should_fail:
-        print_result(result.json)
+        self.assertEqual(result.status_code, 400)
     else:
         self.assertEqual('error' in result.json, should_fail)
         self.assertEqual(result.content_type, self.mimetype)
         self.assertEqual(result.status_code, 200)
         self.assertEqual(len(result.json['users']), expected['users_count'])
+
+def update_user(self, id, email, should_fail=False):
+    data = urlencode({
+        'user_id': id,
+        'email': email,
+    })
+    url = '/api/user/update'
+    result = self.app.post(url, data=(data), headers=self.headers)
+    print_result(result.json)
+    self.assertEqual('error' in result.json, should_fail)
+    if should_fail:
+        self.assertEqual(result.status_code, 400)
+    else:
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(result.content_type, self.mimetype)
+        self.assertEqual(result.json['user']['email'], email)
+        self.assertEqual(result.json['user']['id'], id)
+        self.assertEqual(result.json['user']['v'], 2) # < Updated to 2

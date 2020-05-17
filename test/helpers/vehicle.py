@@ -13,7 +13,7 @@ def delete_vehicle(self, id, expected={}, should_fail=False, failure_error_code=
     print_result(result.json)
     self.assertEqual('error' in result.json, should_fail)
     if should_fail:
-        print_result(result.json)
+        self.assertEqual(result.status_code, 400)
     else:
         self.assertEqual(result.status_code, 200)
         self.assertEqual(result.json['vehicle_id'], id)
