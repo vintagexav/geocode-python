@@ -3,4 +3,8 @@ routes_booking = {
         'rule':'/create',
         'methods':['PUT']
     },
+    'get':{
+        'rule':'/get',
+        'methods':['GET']
+    },
 }

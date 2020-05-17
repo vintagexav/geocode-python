@@ -31,3 +31,16 @@ def create_booking():
         db.session.rollback()
         res = res_error(e)
     return jsonify(res), 400
+
+@booking_api.route(**(routes_booking['get']))
+def get_booking():
+    try:
+        booking_id = request.form['booking_id']
+        booking = Booking.query.get(int(booking_id))
+        res = {
+            'booking': booking.to_json(),
+        }
+        return jsonify(res), 200
+    except Exception as e:
+        res = res_error(e)
+    return jsonify(res), 400

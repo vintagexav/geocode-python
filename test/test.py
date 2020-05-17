@@ -5,7 +5,7 @@ from src.models.db import db
 import unittest
 from flask_fixtures import FixturesMixin
 from .helpers.user import create_user, get_users
-from .helpers.booking import create_booking
+from .helpers.booking import create_booking, get_booking
 
 created_app = setup('config/test.cfg')
 app = created_app.test_client()
@@ -62,3 +62,8 @@ class Tests(unittest.TestCase, FixturesMixin):
 
     def test_2_create_booking(self):
         create_booking(self, 1, 1, {'id':2,},)
+
+    def test_3_get_booking(self):
+        get_booking(self, 1)
+        create_booking(self, 1, 1, {'id':2,},)
+        get_booking(self, 2)
