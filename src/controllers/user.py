@@ -26,3 +26,10 @@ def create_user():
     except Exception as e:
         res = res_error(e)
     return jsonify(res), 400
+
+@user_api.route(**(routes_user['all']))
+def get_all_users():
+    res = {
+        'users': list(map(lambda u:u.to_json(), User.query.all())),
+    }
+    return jsonify(res), 200
