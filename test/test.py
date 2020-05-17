@@ -29,6 +29,26 @@ class Tests(unittest.TestCase, FixturesMixin):
         pass
 
     """
+    TESTS HELPERS
+    """
+    def _create_user(self, email, address, id, should_fail=False):
+        data = urlencode({
+            'email': email,
+            'address': address,
+        })
+        url = '/api/user/create'
+        result = app.put(url, data=(data), headers=headers)#
+        self.assertEqual('error' in result.json, False)
+        print(result.json)
+        self.assertEqual(result.status_code, 201)
+        self.assertEqual(result.json['user']['email'], email)
+        self.assertEqual(result.json['user']['address'], address)
+        self.assertEqual(result.content_type, self.mimetype)
+        self.assertEqual(result.json['user']['id'], id)
+        self.assertEqual(result.json['user']['v'], 1) # new users are created with version = 1
+        print(result.json)
+
+    """
     executed before tests
     """
     def setUp(self):
@@ -42,3 +62,6 @@ class Tests(unittest.TestCase, FixturesMixin):
 
     def test_0_true(self):
         self.assertEqual(True, True)
+
+    def test_1_create_users(self):
+        self._create_user('marge@simpson.com', 'Brussels', 2)

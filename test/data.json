@@ -2,7 +2,6 @@
   {
     "table": "user",
     "records": [{
-      "name": "Homer Simpson",
       "email": "homer@simpson.com"
     }]
   }
