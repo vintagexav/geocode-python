@@ -6,15 +6,26 @@ not go to production. Therefore we don’t expect every edge case to be covered.
 
 ## Start
 
-Provide Google API Key as environment variable in `GEOCODE_KEY` if you would like to store latitude/logitude of user address
+If you would like to store latitude/logitude of user address:
+Provide Google API Key as environment variable in `GEOCODE_KEY`
+
 Run
 `FLASK_APP=src/main.py FLASK_ENV=development flask run --port 8080`
 
-Then you can see documentation on
+Documentation:
 `http://localhost:8080/files/documentation/`
 
 Tests
 `py.test test/test.py --log-cli-level=10 -s`
+
+##  Improvements
+
+- Protect routes with user roles - see https://flask-user.readthedocs.io/en/latest/authorization.html
+- Use JWT/ Session from Flask
+- Encrypt ids 
+- validate email
+- Edge cases
+- Additional endpoints, for instance /api/booking/confirm when a booking is confirmed 
 
 ##  Context
 
