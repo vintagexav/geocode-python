@@ -1,6 +1,7 @@
 from flask import Flask
 from .models.db import db
 from .utils.error import error_404
+
 # ======
 # APP
 # ======
@@ -16,6 +17,7 @@ def initialize_extensions(app):
     print('initialize_extensions')
     db.init_app(app)
     db.create_all(app=app)
+    from .models.User import User
 def setup(config):
     print('setup')
     app = create_app(config)
