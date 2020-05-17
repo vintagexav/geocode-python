@@ -19,13 +19,13 @@ class Vehicle(db.Model):
         res = {
             'id': self.id,
             'license_plate': self.license_plate,
-            'created_at': datetime.timestamp(self.created_at),
+            'created_at': self.created_at.strftime("%d/%m/%Y-%H:%m:%S"),
             'v': self.v,
             #
             'brand': self.brand,
         }
         if self.updated_at:
-            res['updated_at'] = datetime.timestamp(self.updated_at)
+            res['updated_at'] = self.updated_at.strftime("%d/%m/%Y-%H:%m:%S")
         return res
 
     def __repr__(self):

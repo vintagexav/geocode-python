@@ -21,7 +21,7 @@ class User(db.Model):
     def to_json(self):
         res = {
             'id': self.id,
-            'created_at': datetime.timestamp(self.created_at), #self.created_at.strftime("%d/%m/%Y-%H:%m:%S"),
+            'created_at': self.created_at.strftime("%d/%m/%Y-%H:%m:%S"),
             'v': self.v,
             #
             'email': self.email,
@@ -32,7 +32,7 @@ class User(db.Model):
             #             'role': self.role,# WARNINGit would be much cleaner to keep an associative table for this ;) > 1 table for user, 1 table for role, 1 table for user-role > and protect routes with decorator @roles_required - see https://flask-user.readthedocs.io/en/v0.5/authorization.html
         }
         if self.updated_at:
-            res['updated_at'] = datetime.timestamp(self.updated_at)
+            res['updated_at'] = self.updated_at.strftime("%d/%m/%Y-%H:%m:%S")
         return res
 
     def __repr__(self):

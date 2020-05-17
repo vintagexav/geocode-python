@@ -16,7 +16,7 @@ Build with docker
 `docker build -t mbrella .`
 
 Run with docker
-`docker run -p 5000:5000 mbrella`
+`docker run --rm -p 5000:5000 mbrella`
 
 Documentation:
 `0.0.0.0:5000/files/documentation/`

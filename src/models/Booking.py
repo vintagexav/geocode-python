@@ -22,7 +22,7 @@ class Booking(db.Model):
     def to_json(self):
         res = {
             'id': self.id,
-            'created_at': datetime.timestamp(self.created_at),
+            'created_at': self.created_at.strftime("%d/%m/%Y-%H:%m:%S"),
             'v': self.v,
             #
             'user_id': self.user_id,
@@ -30,7 +30,7 @@ class Booking(db.Model):
             'status': self.status
         }
         if self.updated_at:
-            res['updated_at'] = datetime.timestamp(self.updated_at)
+            res['updated_at'] = self.updated_at.strftime("%d/%m/%Y-%H:%m:%S")
         return res
 
     def __repr__(self):

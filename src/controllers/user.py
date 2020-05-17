@@ -3,7 +3,7 @@ from ..models.User import User
 from ..models.db import db
 from ..routes.user import routes_user
 from ..utils.error import res_error
-import datetime
+from datetime import datetime
 import os
 import geocoder
 
