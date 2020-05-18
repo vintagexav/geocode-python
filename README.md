@@ -1,4 +1,4 @@
-# Mbrella move
+# Mbrella
 
 
 This is a demo application. It will serve as a playground to discuss tech-to-tech during the next interview. Take a chance to demonstrate your clean code skills, while keeping in mind that the application will
@@ -9,26 +9,50 @@ not go to production. Therefore we don’t expect every edge case to be covered.
 If you would like to store latitude/logitude of user address:
 Provide Google API Key as environment variable in `GEOCODE_KEY`
 
-Run without Docker (requires python 2.7)
-`FLASK_APP=src/main.py FLASK_ENV=development flask run --port 5000`
+*** WITH DOCKER ***
 
+TESTS:
+
+Build tests with docker
+first delete all the *.pyc files in the test directory and subdirectories:
+`find . \( -name '__pycache__' -or -name '*.pyc' \) -delete`
+then build
+`docker build -t mbrellatest . -f Dockerfile.test`
+
+Run tests with docker (and automatically remove with --rm exposing port with -p)
+`docker run --rm -p 5000:5000 mbrellatest`
+
+APP:
 Build with docker
-`docker build -t mbrella .`
+`docker build -t mbrella . -f Dockerfile`
 
 Run with docker
 `docker run --rm -p 5000:5000 mbrella`
 
-Documentation:
+*** WITHOUT DOCKER *** (requires python 2.7)
+
+TESTS:
+
+Tests without Docker
+`py.test test/test.py --log-cli-level=10 -s`
+
+APP:
+Run without Docker
+`FLASK_APP=src/main.py FLASK_ENV=development flask run --port 5000`
+
+*** Documentation ***
+
 `0.0.0.0:5000/files/documentation/`
 
-Tests
-`py.test test/test.py --log-cli-level=10 -s`
+
+
 
 ##  Improvements
 
 - Additional endpoints, for instance /api/booking/confirm when a booking is confirmed 
-- Move to Python 3.6 - for some reason requirements were failing with package `futures`
+- Move to Python 3.6 - should not be difficult, but package 'futures' might be problematic. Packages to install: Flask, Flask-Fixtures, Flask-SQLAlchemy, geocoder, pytest, urllib
 - Protect routes with user roles - see https://flask-user.readthedocs.io/en/latest/authorization.html
+- Use Headers to specify API version
 - Use JWT/ Session from Flask
 - Encrypt ids 
 - validate email

@@ -3,7 +3,7 @@ import datetime
 from .db import db
 
 # ======
-# VEHICLE
+# MODEL: VEHICLE
 # ======
 
 class Vehicle(db.Model):

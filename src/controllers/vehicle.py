@@ -6,7 +6,7 @@ from ..utils.error import res_error
 import datetime
 
 # ======
-# USER
+# CONTROLLER: VEHICLE
 # ======
 
 vehicle_api = Blueprint('vehicle_api', __name__)

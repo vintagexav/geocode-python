@@ -8,7 +8,7 @@ from ..utils.error import res_error
 from ..constants.bookingStatus import BookingStatus
 
 # ======
-# BOOKING
+# CONTROLLER: BOOKING
 # ======
 
 booking_api = Blueprint('booking_api', __name__)

@@ -1,8 +1,10 @@
 from flask import jsonify
 import sys
+
 # ======
 # ERROR
 # ======
+
 def error_404(name, error):
     print(error)
     return jsonify({

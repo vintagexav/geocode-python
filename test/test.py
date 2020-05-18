@@ -1,4 +1,3 @@
-# ran with py.test test/test.py --log-cli-level=10 -s
 from flask import json
 from src.setup import setup
 from src.models.db import db
@@ -14,10 +13,12 @@ app.testing = True
 config = {
     'tear_down_db': True,
 }
+
 class Tests(unittest.TestCase, FixturesMixin):
     fixtures = ['test/data.json']
     app = created_app
     db = db
+    python_files = 'test_*.py'
 
     @classmethod
     def setUpClass(cls):
@@ -57,25 +58,26 @@ class Tests(unittest.TestCase, FixturesMixin):
     def test_1_create_users(self):
         create_user(self, 'marge@simpson.com', 'Brussels', {'id':2,},)
         create_user(self, 'maggy@simpson.com', 'Brussels', {'id':3,},)
-        create_user(self, 'maggy@simpson.com', 'Brussels', {}, True, 400) # error because of same email adress
+        create_user(self, 'maggy@simpson.com', 'Brussels', {}, should_fail=True, failure_error_code=400) # error because of same email adress
         get_users(self, {'users_count':3,},)
 
     def test_2_create_booking(self):
         create_booking(self, 1, 2, {'id':2,},)
-        create_booking(self, 1, 1, {}, True, 409) # vehicle is already booked
+        create_booking(self, 1, 1, {}, should_fail=True, failure_error_code=409) # error because vehicle is already booked
         create_user(self, 'marge@simpson.com', 'Brussels', {'id':2,},)
-        create_booking(self, 41, 69, {}, True) # error because entities do not exist
+        create_booking(self, 41, 69, {}, should_fail=True, failure_error_code=400) # error because entities do not exist
 
     def test_3_get_booking(self):
         get_booking(self, 1)
         create_booking(self, 1, 2, {'id':2,},)
         get_booking(self, 2)
+        get_booking(self, 99, should_fail=True, failure_error_code=400) # error because booking does not exist
 
     def test_4_delete_vehicle(self):
         delete_vehicle(self, 1)
-        delete_vehicle(self, 1048, {}, True) # error because vehicle does not exist
+        delete_vehicle(self, 1048, {}, should_fail=True, failure_error_code=400) # error because vehicle does not exist
 
     def test_5_update_user(self):
         create_user(self, 'charley@burns.com', 'Brussels', {'id':2,},)
         update_user(self, 2, 'charles.montgomery.Monty@burns.com')
-        update_user(self, 42, '', True) # error because user does not exist
+        update_user(self, 42, '', should_fail=True, failure_error_code=400) # error because user does not exist

@@ -4,7 +4,7 @@ from .db import db
 from ..constants.bookingStatus import BookingStatus
 
 # ======
-# Booking
+# MODEL: BOOKING
 # ======
 
 class Booking(db.Model):

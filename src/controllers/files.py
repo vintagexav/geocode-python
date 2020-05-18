@@ -1,9 +1,9 @@
 from flask import render_template, Blueprint
 from ..routes.files import routes_files
 
-### === ###
-# FILES and potentially a REACT APP
-### === ###
+# ======
+# CONTROLLER: FILES and potentially serve a REACT APP
+# ======
 
 files = Blueprint(
             'documentation',

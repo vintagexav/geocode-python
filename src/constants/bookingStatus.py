@@ -1,8 +1,8 @@
 # ======
-# BookingStatus
+# CONSTANT: BOOKINGSTATUS
 # ======
 
-# The status is useful so that we can check in UNAVAILABLE_STATES if a vehicle can be booked
+# The status is used to check in UNAVAILABLE_STATES if a vehicle can be booked
 
 class BookingStatus:
     CREATED = 1

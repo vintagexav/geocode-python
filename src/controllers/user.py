@@ -8,7 +8,7 @@ import os
 import geocoder
 
 # ======
-# USER
+# CONTROLLER: USER
 # ======
 
 user_api = Blueprint('user_api', __name__)
@@ -18,9 +18,9 @@ def create_user():
     try:
         email = request.form['email'] if 'email' in request.form else ''
         address  =  request.form['address'] if 'address' in request.form else ''
-        googlekey = os.getenv('GEOCODE_KEY') # this should not be stored in code of course
+        googlekey = os.getenv('GEOCODE_KEY')
         g = geocoder.google(address, key=googlekey)
-        latlng = g.latlng if g.latlng else ''
+        latlng = g.latlng if g.latlng else '' # WARNING without a correct GEOCODE_KEY as env key, lat lng wil be empty
         #
         user = User(email=email, name='', address=address, latlng=latlng)
         db.session.add(user)

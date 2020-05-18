@@ -3,7 +3,7 @@ import datetime
 from .db import db
 
 # ======
-# USER
+# MODEL: USER
 # ======
 
 class User(db.Model):

@@ -3,3 +3,11 @@ env/
 __pycache__/
 db/test.db
 db/dev.db
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# misc
+db/*.db
+.DS_Store
+.idea/
