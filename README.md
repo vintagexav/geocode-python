@@ -15,30 +15,44 @@ TESTS:
 
 Build tests with docker
 first delete all the *.pyc files in the test directory and subdirectories:
-`find . \( -name '__pycache__' -or -name '*.pyc' \) -delete`
+```
+find . \( -name '__pycache__' -or -name '*.pyc' \) -delete
+```
 then build
-`docker build -t mbrellatest . -f Dockerfile.test`
+```
+docker build -t mbrellatest . -f Dockerfile.test
+```
 
 Run tests with docker (and automatically remove with --rm exposing port with -p)
-`docker run --rm -p 5000:5000 mbrellatest`
+```
+docker run --rm -p 5000:5000 mbrellatest
+```
 
 APP:
 Build with docker
-`docker build -t mbrella . -f Dockerfile`
+```
+docker build -t mbrella . -f Dockerfile
+```
 
 Run with docker
-`docker run --rm -p 5000:5000 mbrella`
+```
+docker run --rm -p 5000:5000 mbrella
+```
 
 *** WITHOUT DOCKER *** (requires python 2.7)
 
 TESTS:
 
 Tests without Docker
-`py.test test/test.py --log-cli-level=10 -s`
+```
+py.test test/test.py --log-cli-level=10 -s
+```
 
 APP:
 Run without Docker
-`FLASK_APP=src/main.py FLASK_ENV=development flask run --port 5000`
+```
+FLASK_APP=src/main.py FLASK_ENV=development flask run --port 5000
+```
 
 *** Documentation ***
 
