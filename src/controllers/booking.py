@@ -22,11 +22,10 @@ def create_booking():
         user = db.session.query(User).get(int(user_id))
         vehicle = db.session.query(Vehicle).get(int(vehicle_id))
         if vehicle.vehicle_bookings: # let's check if the vehicle is available
-            vehicle_is_busy = list(map(lambda v: v.status in BookingStatus.UNAVAILABLE_STATES, vehicle.vehicle_bookings))[0]
+            vehicle_is_busy = any(map(lambda v: v.status in BookingStatus.UNAVAILABLE_STATES, vehicle.vehicle_bookings))
             if vehicle_is_busy:
                 res = res_error('Vehicle is already booked')
                 return jsonify(res), 409
-        print('...\n\n')
         booking = Booking(user=user, vehicle=vehicle)
         db.session.add(booking)
         db.session.commit()

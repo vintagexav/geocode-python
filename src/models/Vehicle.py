@@ -13,7 +13,7 @@ class Vehicle(db.Model):
     v = db.Column(db.Integer, nullable=False, default=1)
     #
     brand = db.Column(db.String(50), unique=False, nullable=False)
-    license_plate = db.Column(db.String(50), unique=True, nullable=False)
+    license_plate = db.Column(db.String(50), unique=True, nullable=True) # A bike might not have a license plate
 
     def to_json(self):
         res = {
