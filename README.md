@@ -39,6 +39,14 @@ Run with docker
 docker run --rm -p 5000:5000 mbrella
 ```
 
+
+*** Documentation ***
+
+```
+0.0.0.0:5000/files/documentation/
+```
+
+
 *** WITHOUT DOCKER *** (requires python 2.7)
 
 TESTS:
@@ -53,11 +61,6 @@ Run without Docker
 ```
 FLASK_APP=src/main.py FLASK_ENV=development flask run --port 5000
 ```
-
-*** Documentation ***
-
-`0.0.0.0:5000/files/documentation/`
-
 
 
 
